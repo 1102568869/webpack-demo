@@ -13,7 +13,7 @@ module.exports = merge(common, {
     output: {
         publicPath: '',
         filename: 'js/[name].[chunkhash:8].js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
     },
 
     module: {
@@ -45,7 +45,9 @@ module.exports = merge(common, {
     ],
     optimization: {
         minimizer: [
-            new CleanWebpackPlugin(['dist']),
+            new CleanWebpackPlugin(['../dist'], {
+                allowExternal: true
+            }),
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
@@ -64,7 +66,7 @@ module.exports = merge(common, {
                     priority: -10
                 },
                 default: {//cacheGroups重写继承配置，设为false不继承
-                    name:'common',
+                    name: 'common',
                     minChunks: 2,
                     priority: -20,
                     reuseExistingChunk: true
