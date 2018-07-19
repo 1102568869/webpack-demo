@@ -38,6 +38,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            // hash: true,
             inject: 'head',
             template: './src/index.html',
             title: '不,你不想!',
@@ -45,8 +46,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: "css/[name].[chunkhash:8].css",
-            chunkFilename: "css/commons.[chunkhash:8].css"
+            filename: "css/[name].[hash:8].css",
+            chunkFilename: "css/commons.[hash:8].css"
         }),
     ],
 };
