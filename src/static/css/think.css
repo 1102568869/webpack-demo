@@ -1,0 +1,63 @@
+#container {
+    margin: 0px auto;
+    width: 100%;
+    max-width: 500px;
+    min-height: 600px;
+}
+
+#editor {
+    margin: 0px auto;
+    min-height: auto;
+    width: 98%;
+    line-height: 32px;
+    font-size: 28px;
+    resize: none;
+    display: block;
+}
+
+#panel {
+    display: block;
+}
+
+#panel .img-container {
+    position: relative;
+    background: url("../images/no-think.jpg") no-repeat;
+    background-size:100% 100%;
+    width: 98%;
+    padding: 0px;
+    display: block;
+    margin: 0px auto;
+}
+
+.editors {
+    width: 100%;
+}
+
+.editors .editor-left {
+    height: 128px;
+    width: 48%;
+    float: left;
+}
+
+.editors .editor-right {
+    height: 128px;
+    width: 48%;
+    float: right;
+}
+
+.show-left {
+    font-size: 20px;
+    position: absolute;
+    left: 14%;
+    top: 48%;
+    color: white;
+}
+
+.show-right {
+    position: absolute;
+    left: 58%;
+    top: 50%;
+    font-size: 20px;
+    display: block;
+    color: white;
+}

@@ -11,38 +11,12 @@ const webpack = require('webpack');
 module.exports = merge(common, {
     mode: 'production',
     output: {
-        publicPath: '',
+        // publicPath: '',
         filename: 'js/[name].[chunkhash:8].js',
         path: path.resolve(__dirname, '../dist'),
     },
 
-    module: {
-        rules: [
-            {
-                test: /\.css/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            // you can specify a publicPath here
-                            // by default it use publicPath in webpackOptions.output
-                        }
-                    }, "css-loader"
-                ]
-            },
-        ]
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "css/[name].[chunkhash:8].css",
-            chunkFilename: "css/commons.[chunkhash:8].css"
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Production'
-        }),
-    ],
+
     optimization: {
         minimizer: [
             new CleanWebpackPlugin(['../dist'], {

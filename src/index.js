@@ -1,24 +1,38 @@
-import _ from 'lodash';
-import printMe from './print.js';
-import './static/styles.css';
+import './static/css/think.css';
 
-function component() {
-    var element = document.createElement('div');
-    var btn = document.createElement('button');
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
-    element.appendChild(btn);
-    element.classList.add('hello_washmore');
-    console.log('Looks like we are in ' + process.env.NODE_ENV + ' mode!');
-    return element;
-}
+import $ from 'jquery';
+import html2canvas from './static/js/html2canvas.js';
 
-document.body.appendChild(component());
+import './static/js/jquery.support.1.0.0';
 
-if (module.hot) {
-    module.hot.accept('./print.js', function () {
-        console.log('Accepting the updated printMe module!');
-        printMe();
+$(function () {
+    $('.editor-left')
+        .text('我想...')
+        .css({"height": 132, "overflow-y": "hidden"})
+        .on('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            $('.show-left').html('<del>' + $(this).val().replace(/</g, '').replace(/>/g, '').replace(/\n/g, '<br/>') + '</del>')
+        }).trigger('input');
+
+    $('.img-container').on('resize', function () {
+        $(this).height($(this).width());
+    }).trigger('resize');
+
+    $('.editor-right')
+        .text('不,你不想!')
+        .css({"height": 132, "overflow-y": "hidden"})
+        .on('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            $('.show-right').html($(this).val().replace(/</g, '').replace(/>/g, '').replace(/\n/g, '<br/>'))
+        }).trigger('input');
+
+    $("#save").click(function () {
+        html2canvas($('.img-container')[0]).then(function (canvas) {
+            canvas.setAttribute('crossOrigin', 'anonymous');
+            var data = canvas.toDataURL("image/png");
+            $('#show').prop('src', data);
+        });
     })
-}
+});
